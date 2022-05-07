@@ -1,6 +1,6 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="bin,i3,netflix,nvim,personal,tmux,uwuntu,xkb,zsh"
+    STOW_FOLDERS="bin,i3,kairiongit pull --recurse-submodules --jobs=10,nvim,personal,tmux,uwuntu,xkb,zsh"
 fi
 
 if [[ -z $DOTFILES ]]; then
