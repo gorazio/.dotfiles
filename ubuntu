@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
+set -x
+
 if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="bin,i3,kairiongit pull --recurse-submodules --jobs=10,nvim,personal,tmux,uwuntu,xkb,zsh"
+    export STOW_FOLDERS="bin,kairion,personal,tmux,uwuntu,xkb,bash"
 fi
 
 if [[ -z $DOTFILES ]]; then
-    DOTFILES=$HOME/.dotfiles
+    export DOTFILES=$HOME/.dotfiles
 fi
 
-STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
+"$DOTFILES/install"

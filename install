@@ -1,10 +1,9 @@
-#!/usr/bin/env zsh
-# I am using zsh instead of bash.  I was having some troubles using bash with
-# arrays.  Didn't want to investigate, so I just did zsh
-pushd $DOTFILES
-for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
-do
-    stow -D $folder
-    stow $folder
+#!/usr/bin/env bash
+set -x
+IFS=',' read -a array <<<"$STOW_FOLDERS"
+pushd "$DOTFILES" || exit 1
+for folder in "${array[@]}"; do
+    stow -D "$folder"
+    stow "$folder"
 done
-popd
+popd || exit 1
