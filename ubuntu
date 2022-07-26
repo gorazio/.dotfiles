@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -x
 
 if [[ -z $STOW_FOLDERS ]]; then
     export STOW_FOLDERS="bin,kairion,personal,tmux,uwuntu,xkb,bash"
