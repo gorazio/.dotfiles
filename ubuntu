@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ -z $STOW_FOLDERS ]]; then
-    export STOW_FOLDERS="bin,kairion,personal,tmux,uwuntu,xkb,bash"
+    export STOW_FOLDERS="bash,bin,kairion,linux,personal,tmux,vault"
 fi
 
 if [[ -z $DOTFILES ]]; then

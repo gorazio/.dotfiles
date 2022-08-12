@@ -1,15 +1,11 @@
 #!/usr/bin/env bash
 
-# Super cool keyboard stuffs.
-# Required for x applications
-setxkbmap -option caps:ctrl_modifier
+export STOW_FOLDERS="bash,bin,kairion,linux,personal,tmux,vault"
+export DOTFILES=$HOME/.dotfiles
 
-export STOW_FOLDERS="bin,nvim,tmux,uwuntu,netflix,personal,i3,zsh,xkb"
+export GOPATH=$HOME/go
 
-startMongo() {
-    sudo systemctl start mongod
-    sudo systemctl enable mongod
-}
+export EDITOR="code --wait"
 
 increaseWatchers() {
     sudo sysctl fs.inotify.max_user_watches=65536
@@ -20,8 +16,7 @@ change_background() {
     dconf write /org/mate/desktop/background/picture-filename "'$HOME/dotfiles/backgrounds/$(ls ~/dotfiles/backgrounds | fzf)'"
 }
 
-
-die () {
+die() {
     echo >&2 "$@"
     exit 1
 }
@@ -39,14 +34,30 @@ addToPathFront() {
 }
 
 commitDotFiles() {
-    pushd $DOTFILES
-    pushd personal
+    pushd "$DOTFILES" || exit 1
+    pushd personal || exit 1
     git add .
     git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
     git push origin master
-    popd
+    popd || exit 1
     git add .
     git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
     git push origin master
-    popd
+    popd || exit 1
+}
+
+validateYaml() {
+    python -c 'import yaml,sys;yaml.safe_load(sys.stdin)' <"$1"
+}
+
+unlockBitWarden() {
+    # bw locked
+    for i in $(seq 5); do
+        KEY=$(bw unlock --raw)
+        if [[ $? -eq 0 ]]; then
+            break
+        fi
+    done
+    sed -i "s|^export BW_SESSION='.*'|export BW_SESSION='$KEY'|" /home/gorazio/.bash_aliases
+    export BW_SESSION="$KEY"
 }

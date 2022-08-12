@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+#key=${VAULT_ADDR/https:\/\//}
+
+case "$1" in
+  get)   
+	  bw get item 59dbc1f4-5647-4892-837d-ac7101264a40 | jq -r .login.password | tr -d '\n'
+	  ;;
+  store)
+	  NEW=$(cat) 
+	  JQ_STRING=".login.password=\"$NEW"\"
+	  bw get item 59dbc1f4-5647-4892-837d-ac7101264a40 | jq $JQ_STRING | bw encode | bw edit item 59dbc1f4-5647-4892-837d-ac7101264a40
+	  ;;
+  erase) 
+	  bw get item 59dbc1f4-5647-4892-837d-ac7101264a40 | jq '.login.password=""' | bw encode | bw edit item 59dbc1f4-5647-4892-837d-ac7101264a40
+          ;;
+esac
