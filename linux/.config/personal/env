@@ -7,6 +7,8 @@ export GOPATH=$HOME/go
 
 export EDITOR="code --wait"
 
+source "$PERSONAL/local"
+
 increaseWatchers() {
     sudo sysctl fs.inotify.max_user_watches=65536
     sudo sysctl -p
@@ -58,6 +60,10 @@ unlockBitWarden() {
             break
         fi
     done
-    sed -i "s|^export BW_SESSION='.*'|export BW_SESSION='$KEY'|" /home/gorazio/.bash_aliases
+    sed -i "s|^export BW_SESSION='.*'|export BW_SESSION='$KEY'|" $PERSONAL/local
     export BW_SESSION="$KEY"
+}
+
+parse_git_branch() {
+    git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }

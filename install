@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# set -x
 
 IFS=',' read -a array <<<"$STOW_FOLDERS"
 pushd "$DOTFILES" || exit 1

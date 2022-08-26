@@ -8,6 +8,7 @@ alias killBT="rfkill block bluetooth"
 alias unKillBT="rfkill unblock bluetooth"
 alias livestream_screenkey="screenkey -s large --scr 2 -p bottom --geometry 1210x300+712+810"
 alias yt_screenkey="screenkey -s large --scr 1 -p bottom --geometry 510x300+1412+850"
+alias goKairion="cd /home/gorazio/work/kairion"
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
@@ -39,3 +40,6 @@ if [ $(command -v kubectl) ]; then
     fi
     export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 fi
+
+# kitty
+alias s="kitty +kitten ssh"

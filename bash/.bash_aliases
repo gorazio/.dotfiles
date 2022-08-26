@@ -6,9 +6,17 @@ source "$PERSONAL/env"
 
 while read -r i; do
     source "$i"
-done < <(find -L "$PERSONAL")
+done < <(find -L "$PERSONAL" -maxdepth 1 -mindepth 1)
+
+# Point the SSH_AUTH_SOCK to the one handled by gpg-agent
+if [ -S $(gpgconf --list-dirs agent-ssh-socket) ]; then
+    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+else
+    echo "$(gpgconf --list-dirs agent-ssh-socket) doesn't exist. Is gpg-agent running ?"
+fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 addToPathFront $GOPATH/bin
-export BW_SESSION='session'
+
+eval "$(direnv hook bash)"
