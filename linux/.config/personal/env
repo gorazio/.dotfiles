@@ -7,6 +7,8 @@ export GOPATH=$HOME/go
 
 export EDITOR="code --wait"
 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
 source "$PERSONAL/local"
 
 increaseWatchers() {
