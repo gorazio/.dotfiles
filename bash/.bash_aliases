@@ -20,3 +20,6 @@ fi
 addToPathFront $GOPATH/bin
 
 eval "$(direnv hook bash)"
+
+HISTSIZE=10000
+HISTFILESIZE=200000
