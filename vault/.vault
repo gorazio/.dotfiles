@@ -1,1 +1,1 @@
-token_helper = "/home/gorazio/.vault.d/token-helpers/bitwarden"
+token_helper = "$HOME/.vault.d/token-helpers/bitwarden"

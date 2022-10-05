@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-addToPath $HOME/.local/kitty.app/bin
+# addToPath $HOME/.local/kitty.app/bin
+
+addToPath /Users/gorazio/Library/Python/3.9/bin

@@ -8,8 +8,8 @@ alias killBT="rfkill block bluetooth"
 alias unKillBT="rfkill unblock bluetooth"
 alias livestream_screenkey="screenkey -s large --scr 2 -p bottom --geometry 1210x300+712+810"
 alias yt_screenkey="screenkey -s large --scr 1 -p bottom --geometry 510x300+1412+850"
-alias goKairion="cd /home/gorazio/work/kairion"
-alias goPaycos="cd /home/gorazio/work/paycos"
+alias goKairion="cd $HOME/WORK/kairion"
+alias goPaycos="cd $HOME/WORK/paycos"
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
@@ -25,22 +25,22 @@ fi
 
 alias rgrep='fgrep -R'
 
-if [ $(command -v kubectl) ]; then
-    if [ -f ~/.fubectl.source ]; then
-        source ~/.fubectl.source
-    else
-        alias k=kubectl
-    fi
-    source <(k completion bash | sed s/kubectl/k/g)
+# if [ $(command -v kubectl) ]; then
+#     if [ -f ~/.fubectl.source ]; then
+#         source ~/.fubectl.source
+#     else
+#         alias k=kubectl
+#     fi
+#     source <(k completion bash | sed s/kubectl/k/g)
 
-    if [ -f ~/.kube-ps1/kube-ps1.sh ]; then
-        source ~/.kube-ps1/kube-ps1.sh
-        export PS1='[ \e[01;31m\u\e[01;33m@\e[01;36m\h \e[01;33m\W $(parse_git_branch)$(kube_ps1)\e[0m]\n\$ '
-        #export PS1='$(kube_ps1)\e[1;31m>\e[1;33m>\e[1;32m>\e[0;0m\$ '
-        kubeoff
-    fi
-    export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-fi
+#     if [ -f ~/.kube-ps1/kube-ps1.sh ]; then
+#         source ~/.kube-ps1/kube-ps1.sh
+#         export PS1='[ \e[01;31m\u\e[01;33m@\e[01;36m\h \e[01;33m\W $(parse_git_branch)$(kube_ps1)\e[0m]\n\$ '
+#         #export PS1='$(kube_ps1)\e[1;31m>\e[1;33m>\e[1;32m>\e[0;0m\$ '
+#         kubeoff
+#     fi
+#     export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+# fi
 
 # kitty
-alias s="kitty +kitten ssh"
+# alias s="kitty +kitten ssh"
